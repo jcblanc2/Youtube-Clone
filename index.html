@@ -20,16 +20,12 @@
     <link rel="stylesheet" href="styles/video_style.css" />
     <title>Youtube Clone</title>
   </head>
+
   <body>
     <div class="header">
       <div class="left-section">
         <img class="hamburger-menu" src="icons/hamburger-menu.svg" alt="" />
-        <img
-          class="youtube-logo"
-          src="icons/youtube-logo.svg"
-          alt="Youtube"
-          title="Youtube"
-        />
+        <img class="youtube-logo" src="icons/youtube-logo.svg" alt="Youtube" />
       </div>
 
       <div class="middle-section">
@@ -41,42 +37,44 @@
           placeholder="Search"
         />
         <button class="search-btn">
-          <img
-            class="search-icon"
-            src="icons/search.svg"
-            alt="Search"
-            title="Search"
-          />
+          <img class="search-icon" src="icons/search.svg" alt="Search" />
+          <div class="tooltip">Search</div>
         </button>
         <button class="voice-btn">
           <img
             class="voice-icon"
             src="icons/voice-search-icon.svg"
             alt="Search with your voice"
-            title="Search with your voice"
           />
+          <div class="tooltip">Search with your voice</div>
         </button>
       </div>
 
       <div class="right-section">
-        <img
-          class="upload-icon"
-          src="icons/upload.svg"
-          alt="Create"
-          title="Create"
-        />
-        <img
-          class="youtube-apps-icon"
-          src="icons/youtube-apps.svg"
-          alt="Youtube Apps"
-          title="Youtube Apps"
-        />
-        <img
-          class="notifications-icon"
-          src="icons/notifications.svg"
-          alt="Notifications"
-          title="Notifications"
-        />
+        <div class="upload-container">
+          <img class="upload-icon" src="icons/upload.svg" alt="Create" />
+          <div class="tooltip">Create</div>
+        </div>
+
+        <div class="youtube-apps-icon-container">
+          <img
+            class="youtube-apps-icon"
+            src="icons/youtube-apps.svg"
+            alt="Youtube Apps"
+          />
+          <div class="tooltip">Youtube Apps</div>
+        </div>
+
+        <div class="notifications-icon-container">
+          <img
+            class="notifications-icon"
+            src="icons/notifications.svg"
+            alt="Notifications"
+          />
+          <div class="notifications-count">0</div>
+          <div class="tooltip">Notifications</div>
+        </div>
+
         <img
           class="current-user-picture"
           src="images/user-icon1.png"
@@ -85,7 +83,32 @@
       </div>
     </div>
 
-    <div class="sidebar">sidebar</div>
+    <div class="sidebar">
+      <div class="sidebar-link">
+        <img src="icons/home.svg" alt="home" />
+        <div>Home</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/explore.svg" alt="explore" />
+        <div>Explore</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/subscriptions.svg" alt="subscriptions" />
+        <div>Subscriptions</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/originals.svg" alt="originals" />
+        <div>Originals</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/youtube-music.svg" alt="youtube-music" />
+        <div>Youtube Music</div>
+      </div>
+      <div class="sidebar-link">
+        <img src="icons/library.svg" alt="library" />
+        <div>Library</div>
+      </div>
+    </div>
 
     <div class="main-grid">
       <div class="video-preview">
@@ -98,9 +121,12 @@
             <img class="profile" src="images/channel-1.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">
-              Talking Tech and AI with Google CEO Sundar Pichai!
-            </p>
+            <div class="video-title-container">
+              <p class="video-title">
+                Talking Tech and AI with Google CEO Sundar Pichai!
+              </p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
             <p class="video-author">Marques Brownlee</p>
             <p class="video-stats">3.4M views · 6 months ago</p>
           </div>
@@ -117,7 +143,11 @@
             <img class="profile" src="images/channel-2.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">Try Not To Laugh Challenge #9</p>
+            <div class="video-title-container">
+              <p class="video-title">Try Not To Laugh Challenge #9</p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
+
             <p class="video-author">Markiplier</p>
             <p class="video-stats">19M views · 4 years ago</p>
           </div>
@@ -134,9 +164,12 @@
             <img class="profile" src="images/channel-1.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">
-              Talking Tech and AI with Google CEO Sundar Pichai!
-            </p>
+            <div class="video-title-container">
+              <p class="video-title">
+                Talking Tech and AI with Google CEO Sundar Pichai!
+              </p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
             <p class="video-author">Marques Brownlee</p>
             <p class="video-stats">3.4M views · 6 months ago</p>
           </div>
@@ -153,7 +186,10 @@
             <img class="profile" src="images/channel-2.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">Try Not To Laugh Challenge #9</p>
+            <div class="video-title-container">
+              <p class="video-title">Try Not To Laugh Challenge #9</p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
             <p class="video-author">Markiplier</p>
             <p class="video-stats">19M views · 4 years ago</p>
           </div>
@@ -170,9 +206,12 @@
             <img class="profile" src="images/channel-1.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">
-              Talking Tech and AI with Google CEO Sundar Pichai!
-            </p>
+            <div class="video-title-container">
+              <p class="video-title">
+                Talking Tech and AI with Google CEO Sundar Pichai!
+              </p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
             <p class="video-author">Marques Brownlee</p>
             <p class="video-stats">3.4M views · 6 months ago</p>
           </div>
@@ -189,7 +228,10 @@
             <img class="profile" src="images/channel-2.jpeg" alt="" />
           </div>
           <div class="video-info">
-            <p class="video-title">Try Not To Laugh Challenge #9</p>
+            <div class="video-title-container">
+              <p class="video-title">Try Not To Laugh Challenge #9</p>
+              <p class="tree-dots">&#8942;</p>
+            </div>
             <p class="video-author">Markiplier</p>
             <p class="video-stats">19M views · 4 years ago</p>
           </div>
