@@ -9,6 +9,7 @@
     padding-top: 5px;
 }
 
+
 .sidebar-link{
     height: 74px;
     transition: background-color 0.7s;
@@ -33,6 +34,5 @@
 
 
 .sidebar-link div{
-    font-family: Roboto, Arial;
     font-size: 10px;
 }

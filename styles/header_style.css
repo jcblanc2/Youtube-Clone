@@ -99,12 +99,10 @@
 .notifications-icon-container .tooltip{
     position: absolute;
     background-color: rgba(96, 96, 96, 0.9);
-    font-family: Roboto Arial;
     color: white;
     padding: 4px 8px 4px 8px;
     border-radius: 2px;
     font-size: 12;
-    font-family: Roboto, Arial;
     bottom: -30px;
     opacity: 0;
     transition: opacity 0.15s;
@@ -197,7 +195,6 @@
     background-color: #cc0000;
     color: white;
     border-radius: 10px;
-    font-family: Roboto, Arial;
     font-size: 11px;
     padding: 2px 5px 2px 5px;
     position: absolute;
