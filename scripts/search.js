@@ -62,9 +62,17 @@ export async function searchVideo(videoId) {
     };
 
     const video = await fetchData(params, 'video');
+
     const videoDetail = {
+        title: video[0].snippet.title,
+        channelId: video[0].snippet.channelId,
+        channelTitle: video[0].snippet.channelTitle,
         duration: video[0].contentDetails.duration,
-        viewCount: video[0].statistics.viewCount
+        publishedAt: video[0].snippet.publishedAt,
+        viewCount: video[0].statistics.viewCount,
+        likeCount: video[0].statistics.likeCount,
+        tags: video[0].snippet.tags.slice(0, 3),
+        description: video[0].snippet.localized.description
     }
     return videoDetail;
 }

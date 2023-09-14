@@ -29,6 +29,10 @@
 
 .channel-info{
     margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -42,4 +46,142 @@
 .channel-stats{
     font-size: 12px;
     color: rgb(96, 96, 96);
+}
+
+
+.subscribe-btn{
+    border: none;
+    background-color: #d4d4d4;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: background-color 0.7s;
+    padding: 10px 20px 10px 20px;
+}
+
+
+.subscribe-btn:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.7s;
+}
+
+
+.share-btn{
+    border: none;
+    background-color: #d4d4d4;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: background-color 0.7s;
+    padding: 10px 40px 10px 40px;
+    margin-right: 5px;
+}
+
+
+.share-btn:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.7s;
+}
+
+
+.like-btn{
+    border: none;
+    border-right: 1px solid #9d9d9d;
+    background-color: #d4d4d4;
+    transition: background-color 0.7s;
+    border-radius: 50px 0px 0px 50px;
+    font-size: 16px;
+    padding: 10px 15px 10px 15px;
+    text-align: center;
+}
+
+
+.like-btn:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.7s;
+}
+
+
+.dislike-btn{
+    border: none;
+    background-color: #d4d4d4;
+    transition: background-color 0.7s;
+    border-radius: 0px 50px 50px 0px;
+    font-size: 16px;
+    padding: 10px 15px 10px 15px;
+    margin-left: -4px;
+    margin-right: 5px;
+}
+
+
+.dislike-btn:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.7s;
+}
+
+
+.more-btn{
+    border: none;
+    background-color: #d4d4d4;
+    font-size: 18px;
+    transition: background-color 0.7s;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+
+
+.more-btn:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.7s;
+}
+
+
+.info-left-section{
+    display: flex;
+    column-gap: 25px;
+    align-items: center;
+}
+
+
+.video-description{
+    width: 715px;
+}
+
+
+.dislike-btn, .like-btn, .share-btn, .subscribe-btn{
+    font-weight: 500;
+}
+
+
+.bottom-description-container{
+    width: 715px;
+    height: 90px;
+    background-color: #d4d4d4;
+    transition: background-color 0.3s;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+
+.bottom-description-container:hover{
+    background-color: #c3c2c2;
+    transition: background-color 0.3s;
+}
+
+
+.bottom-detail-stats{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 6px;
+}
+
+
+.bottom-more-description{
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
 }
