@@ -17,7 +17,7 @@ const sidebarVideo = document.querySelector('.sidebar-video');
 fillVideoGrid();
 
 async function fillVideoGrid() {
-  searchVideos("paysage suisse", 40)
+  searchVideos("paysage suisse", 20)
     .then(async (videos) => {
       for (const video of videos) {
         const channelPhotoProfile = await searchChannel(video.snippet.channelId);
@@ -141,7 +141,7 @@ async function fillVideoDetails(videoId) {
 
 async function fillSidebarVideo(keyword) {
   sidebarVideoHtml = '';
-
+  sidebarVideo.innerHTML = '';
   searchVideos(keyword, 6)
     .then(async (videos) => {
       for (const video of videos) {
