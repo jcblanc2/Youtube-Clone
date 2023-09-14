@@ -1,9 +1,9 @@
 import { searchVideos, searchChannel, searchVideo } from './search.js';
 import {
-    formatDate, formatViews,
-    convertDurationToTimeString,
-    formatLikes, fotmatTags,
-    truncateDescription, formatsubscriberCount
+  formatDate, formatViews,
+  convertDurationToTimeString,
+  formatLikes, fotmatTags,
+  truncateDescription, formatsubscriberCount
 } from './utils.js';
 
 let videoGridHtml = '';
@@ -14,17 +14,17 @@ const videoGrid = document.querySelector('.video-grid');
 const videoDetails = document.querySelector('.video-details');
 const sidebarVideo = document.querySelector('.sidebar-video');
 
-// fillVideoGrid();
+fillVideoGrid();
 
 async function fillVideoGrid() {
-    searchVideos("paysage suisse", 2)
-        .then(async (videos) => {
-            for (const video of videos) {
-                const channelPhotoProfile = await searchChannel(video.snippet.channelId);
-                const { duration, viewCount } = await searchVideo(video.id.videoId);
+  searchVideos("paysage suisse", 40)
+    .then(async (videos) => {
+      for (const video of videos) {
+        const channelPhotoProfile = await searchChannel(video.snippet.channelId);
+        const { duration, viewCount } = await searchVideo(video.id.videoId);
 
-                videoGridHtml +=
-                    `
+        videoGridHtml +=
+          `
                     <div class="video-preview" data-video-id=${video.id.videoId}>
                         <div class="thumbnail-row">
                             <img class="thumbnail" src="${video.snippet.thumbnails.medium.url}" alt="" />
@@ -47,42 +47,42 @@ async function fillVideoGrid() {
                         </div>
                     </div>
                 `;
-            }
+      }
 
-            videoGrid.innerHTML = videoGridHtml;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+      videoGrid.innerHTML = videoGridHtml;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 
 
 videoGrid.addEventListener('click', (event) => {
-    const videoPreview = event.target.closest('.video-preview');
-    if (videoPreview) {
-        fillVideoDetails(videoPreview.dataset.videoId);
-    }
+  const videoPreview = event.target.closest('.video-preview');
+  if (videoPreview) {
+    fillVideoDetails(videoPreview.dataset.videoId);
+  }
 });
 
 
 
 sidebarVideo.addEventListener('click', (event) => {
-    const videoPreview = event.target.closest('.side-video-preview');
-    if (videoPreview) {
-        fillVideoDetails(videoPreview.dataset.videoId);
-    }
+  const videoPreview = event.target.closest('.side-video-preview');
+  if (videoPreview) {
+    fillVideoDetails(videoPreview.dataset.videoId);
+  }
 });
 
 
 
 
 async function fillVideoDetails(videoId) {
-    const video = await searchVideo(videoId);
-    const channel = await searchChannel(video.channelId);
+  const video = await searchVideo(videoId);
+  const channel = await searchChannel(video.channelId);
 
-    videoDetailsHtml =
-        `
+  videoDetailsHtml =
+    `
         <div class="video-details-container">
           <div class="video-container">
             <iframe
@@ -131,25 +131,25 @@ async function fillVideoDetails(videoId) {
         </div>
     `;
 
-    videoGrid.innerHTML = '';
-    videoDetails.innerHTML = videoDetailsHtml;
+  videoGrid.innerHTML = '';
+  videoDetails.innerHTML = videoDetailsHtml;
 
-    fillSidebarVideo(video.title);
+  fillSidebarVideo(video.title);
 }
 
 
 
 async function fillSidebarVideo(keyword) {
-    sidebarVideoHtml = '';
+  sidebarVideoHtml = '';
 
-    searchVideos(keyword, 2)
-        .then(async (videos) => {
-            for (const video of videos) {
-                const videoById = await searchVideo(video.id.videoId);
-                console.log(videoById.duration)
+  searchVideos(keyword, 6)
+    .then(async (videos) => {
+      for (const video of videos) {
+        const videoById = await searchVideo(video.id.videoId);
+        console.log(videoById.duration)
 
-                sidebarVideoHtml +=
-                    `
+        sidebarVideoHtml +=
+          `
                     <div class="side-video-preview" data-video-id="${video.id.videoId}">
                         <div class="side-video-info-grid">
                             <div class="side-thumbnail-row">
@@ -169,11 +169,11 @@ async function fillSidebarVideo(keyword) {
                         </div>
                     </div>
                 `;
-            }
+      }
 
-            sidebarVideo.innerHTML = sidebarVideoHtml;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+      sidebarVideo.innerHTML = sidebarVideoHtml;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
