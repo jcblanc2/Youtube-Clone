@@ -1,12 +1,13 @@
-import { API_KEY, SEARCH_URL, VIDEOS_URL } from './constant.js';
+import { API_KEY, SEARCH_URL, VIDEOS_URL, CHANNELS_URL } from './constant.js';
 
 async function fetchData(params, option) {
-    // Construct the URL with query parameters
     let url = undefined;
     if (option === 'search') {
         url = new URL(SEARCH_URL);
-    } else {
+    } else if (option === 'video') {
         url = new URL(VIDEOS_URL);
+    } else if (option === 'channel') {
+        url = new URL(CHANNELS_URL);
     }
 
     url.search = new URLSearchParams(params).toString();
@@ -28,36 +29,42 @@ async function fetchData(params, option) {
 }
 
 
-
 export async function searchVideos(keyword) {
     const params = {
         key: API_KEY,
         part: 'snippet',
         q: keyword,
-        maxResults: 50,
+        maxResults: 1,
         type: 'video',
     };
     return fetchData(params, 'search');
 }
 
 
-export async function searchChannel(id) {
+export async function searchChannel(channelId) {
     const params = {
         key: API_KEY,
         part: 'snippet',
-        channelId: id,
-        channelType: 'channelTypeUnspecified',
-        maxResults: 1,
+        id: channelId,
     };
-    return fetchData(params, 'search');
+
+    const channels = await fetchData(params, 'channel');
+    const photoProfile = channels[0].snippet.thumbnails.default.url;
+    return photoProfile;
 }
 
 
 export async function searchVideo(videoId) {
     const params = {
         key: API_KEY,
-        part: 'snippet',
+        part: ['snippet', 'contentDetails', 'statistics'],
         id: videoId,
     };
-    return fetchData(params, 'search');
+
+    const video = await fetchData(params, 'video');
+    const videoDetail = {
+        duration: video[0].contentDetails.duration,
+        viewCount: video[0].statistics.viewCount
+    }
+    return videoDetail;
 }

@@ -16,8 +16,9 @@
     />
     <link rel="stylesheet" href="styles/general_style.css" />
     <link rel="stylesheet" href="styles/header_style.css" />
-    <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/sidebar_style.css" />
     <link rel="stylesheet" href="styles/video_style.css" />
+    <link rel="stylesheet" href="styles/details_style.css" />
     <title>Youtube Clone</title>
   </head>
 
@@ -112,6 +113,32 @@
 
     <main>
       <section class="video-grid"></section>
+
+      <section class="video-details">
+        <div class="video-details-container">
+          <div class="video-container">
+            <iframe
+              class="video-player"
+              src="https://www.youtube.com/embed/EbMYye-2Yt8?autoplay=1&mute=1"
+            >
+            </iframe>
+          </div>
+          <div class="video-description">
+            <p class="video-detail-title">
+              Holy Forever - Jenn Johnson, Bethel Music | Moment
+            </p>
+            <div class="container-channel-info">
+              <div class="profile-image-container">
+                <img class="profile-image" src="images/channel-2.jpeg" alt="" />
+              </div>
+              <div class="channel-info">
+                <p class="channel-name">Bethel Music</p>
+                <p class="channel-stats">4,78 M d’abonnés</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script type="module" src="scripts/app.js"></script>
