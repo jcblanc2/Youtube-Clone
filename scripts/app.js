@@ -7,14 +7,16 @@ import {
 
 let videoGridHtml = '';
 let videoDetailsHtml = '';
+let sidebarVideoHtml = '';
 
 const videoGrid = document.querySelector('.video-grid');
 const videoDetails = document.querySelector('.video-details');
+const sidebarVideo = document.querySelector('.sidebar-video');
 
-// fillVideoGrid();
+fillVideoGrid();
 
 async function fillVideoGrid() {
-    searchVideos("paysage suisse")
+    searchVideos("paysage suisse", 2)
         .then(async (videos) => {
             for (const video of videos) {
                 const channelPhotoProfile = await searchChannel(video.snippet.channelId);
@@ -22,28 +24,28 @@ async function fillVideoGrid() {
 
                 videoGridHtml +=
                     `
-                <div class="video-preview" data-video-id=${video.id.videoId}>
-                    <div class="thumbnail-row">
-                        <img class="thumbnail" src="${video.snippet.thumbnails.medium.url}" alt="" />
-                        <div class="video-time">${convertDurationToTimeString(duration)}</div>
+                    <div class="video-preview" data-video-id=${video.id.videoId}>
+                        <div class="thumbnail-row">
+                            <img class="thumbnail" src="${video.snippet.thumbnails.medium.url}" alt="" />
+                            <div class="video-time">${convertDurationToTimeString(duration)}</div>
+                        </div>
+                        <div class="video-info-grid">
+                            <div class="thumbnail-profile">
+                            <img class="profile" src="${channelPhotoProfile}" alt="" /> 
+                            </div>
+                            <div class="video-info">
+                            <div class="video-title-container">
+                                <p class="video-title">
+                                ${video.snippet.title}
+                                </p>
+                                <p class="tree-dots">&#8942;</p>
+                            </div>
+                            <p class="video-author">${video.snippet.channelTitle}</p>
+                            <p class="video-stats">${formatViews(viewCount)} · ${formatDate(video.snippet.publishedAt)}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="video-info-grid">
-                        <div class="thumbnail-profile">
-                        <img class="profile" src="${channelPhotoProfile}" alt="" /> <!-- Use the awaited result here -->
-                        </div>
-                        <div class="video-info">
-                        <div class="video-title-container">
-                            <p class="video-title">
-                            ${video.snippet.title}
-                            </p>
-                            <p class="tree-dots">&#8942;</p>
-                        </div>
-                        <p class="video-author">${video.snippet.channelTitle}</p>
-                        <p class="video-stats">${formatViews(viewCount)} · ${formatDate(video.snippet.publishedAt)}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+                `;
             }
 
             videoGrid.innerHTML = videoGridHtml;
@@ -52,6 +54,7 @@ async function fillVideoGrid() {
             console.error('Error:', error);
         });
 }
+
 
 
 videoGrid.addEventListener('click', (event) => {
@@ -69,7 +72,7 @@ async function fillVideoDetails(videoId) {
 
     videoDetailsHtml =
         `
-    <div class="video-details-container">
+        <div class="video-details-container">
           <div class="video-container">
             <iframe
               class="video-player"
@@ -98,9 +101,9 @@ async function fillVideoDetails(videoId) {
                 </div>
 
                 <div class="info-right-section">
-                  <button class="like-btn">${formatLikes(video.likeCount)}</button>
-                  <button class="dislike-btn">Dislike</button>
-                  <button class="share-btn">Share</button>
+                  <button class="like-btn"><i class="fa fa-thumbs-up"></i> ${formatLikes(video.likeCount)}</button>
+                  <button class="dislike-btn"><i class="fa fa-thumbs-down"></i></button>
+                  <button class="share-btn"><i class="fa fa-share"></i> Share</button>
                   <button class="more-btn">&#8230;</button>
                 </div>
               </div>
@@ -119,4 +122,44 @@ async function fillVideoDetails(videoId) {
 
     videoGrid.innerHTML = '';
     videoDetails.innerHTML = videoDetailsHtml;
+
+    fillSidebarVideo(video.title);
+}
+
+
+
+async function fillSidebarVideo(keyword) {
+    searchVideos(keyword, 2)
+        .then(async (videos) => {
+            for (const video of videos) {
+                const { duration, viewCount } = await searchVideo(video.id.videoId);
+
+                sidebarVideoHtml +=
+                    `
+                    <div class="side-video-preview" data-video-id="${video.id.videoId}">
+                        <div class="side-video-info-grid">
+                            <div class="side-thumbnail-row">
+                                <img class="side-profile" src="${video.snippet.thumbnails.medium.url}" alt="" />
+                                <div class="side-video-time">${convertDurationToTimeString(duration)}</div>
+                            </div>
+                            <div class="side-video-info">
+                                <div class="side-video-title-container">
+                                <p class="side-video-title">
+                                    ${video.snippet.title}
+                                </p>
+                                <p class="side-tree-dots">&#8942;</p>
+                                </div>
+                                <p class="side-video-author">${video.snippet.channelTitle}</p>
+                                <p class="side-video-stats">${formatViews(viewCount)} · ${formatDate(video.snippet.publishedAt)}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            sidebarVideo.innerHTML = sidebarVideoHtml;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }

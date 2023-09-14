@@ -1,7 +1,7 @@
 .video-player {
     border: none;
     width: 715px;
-    height: 420px;
+    height: 402px;
     margin-bottom: 10px;
 }
 
@@ -53,9 +53,10 @@
     border: none;
     background-color: #d4d4d4;
     border-radius: 50px;
-    font-size: 16px;
     transition: background-color 0.7s;
     padding: 10px 20px 10px 20px;
+    font-size: 17px;
+    font-weight: 700;
 }
 
 
@@ -69,7 +70,8 @@
     border: none;
     background-color: #d4d4d4;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
     transition: background-color 0.7s;
     padding: 10px 40px 10px 40px;
     margin-right: 5px;
@@ -88,7 +90,8 @@
     background-color: #d4d4d4;
     transition: background-color 0.7s;
     border-radius: 50px 0px 0px 50px;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
     padding: 10px 15px 10px 15px;
     text-align: center;
 }
@@ -105,7 +108,8 @@
     background-color: #d4d4d4;
     transition: background-color 0.7s;
     border-radius: 0px 50px 50px 0px;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
     padding: 10px 15px 10px 15px;
     margin-left: -4px;
     margin-right: 5px;
@@ -121,7 +125,7 @@
 .more-btn{
     border: none;
     background-color: #d4d4d4;
-    font-size: 18px;
+    font-size: 17px;
     transition: background-color 0.7s;
     border-radius: 20px;
     width: 40px;
@@ -155,7 +159,7 @@
 
 
 .bottom-description-container{
-    width: 715px;
+    width: 700px;
     height: 90px;
     background-color: #d4d4d4;
     transition: background-color 0.3s;

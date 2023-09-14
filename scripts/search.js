@@ -29,16 +29,18 @@ async function fetchData(params, option) {
 }
 
 
-export async function searchVideos(keyword) {
+export async function searchVideos(keyword, maxResults) {
     const params = {
         key: API_KEY,
         part: 'snippet',
         q: keyword,
-        maxResults: 1,
+        maxResults: maxResults,
         type: 'video',
     };
     return fetchData(params, 'search');
 }
+
+
 
 
 export async function searchChannel(channelId) {
