@@ -1,4 +1,4 @@
-.video-details{
+.main-video-details-container{
     display: grid;
     grid-template-columns: 1fr 470px;
 }
@@ -42,7 +42,7 @@
 .side-video-title{
     font-size: 12px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 16px;
     margin-bottom: 12px;
 }
 
@@ -73,7 +73,7 @@
     color: white;
     position: absolute;
     bottom: 10px;
-    left: 155px;
+    left: 140px;
     padding: 2px 4px 2px 4px;
     border-radius: 2px;
 }

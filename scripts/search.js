@@ -46,13 +46,17 @@ export async function searchVideos(keyword, maxResults) {
 export async function searchChannel(channelId) {
     const params = {
         key: API_KEY,
-        part: 'snippet',
+        part: ['snippet', 'statistics'],
         id: channelId,
     };
 
-    const channels = await fetchData(params, 'channel');
-    const photoProfile = channels[0].snippet.thumbnails.default.url;
-    return photoProfile;
+    const channel = await fetchData(params, 'channel');
+    const channelDetail = {
+        photoProfile: channel[0].snippet.thumbnails.default.url,
+        subscriberCount: channel[0].statistics.subscriberCount
+
+    }
+    return channelDetail;
 }
 
 
@@ -73,7 +77,7 @@ export async function searchVideo(videoId) {
         publishedAt: video[0].snippet.publishedAt,
         viewCount: video[0].statistics.viewCount,
         likeCount: video[0].statistics.likeCount,
-        tags: video[0].snippet.tags.slice(0, 3),
+        tags: video[0].snippet.tags ? video[0].snippet.tags.slice(0, 3) : [],
         description: video[0].snippet.localized.description
     }
     return videoDetail;

@@ -2,7 +2,8 @@ import { searchVideos, searchChannel, searchVideo } from './search.js';
 import {
     formatDate, formatViews,
     convertDurationToTimeString,
-    formatLikes, fotmatTags, truncateDescription
+    formatLikes, fotmatTags,
+    truncateDescription, formatsubscriberCount
 } from './utils.js';
 
 let videoGridHtml = '';
@@ -13,7 +14,7 @@ const videoGrid = document.querySelector('.video-grid');
 const videoDetails = document.querySelector('.video-details');
 const sidebarVideo = document.querySelector('.sidebar-video');
 
-fillVideoGrid();
+// fillVideoGrid();
 
 async function fillVideoGrid() {
     searchVideos("paysage suisse", 2)
@@ -66,9 +67,19 @@ videoGrid.addEventListener('click', (event) => {
 
 
 
+sidebarVideo.addEventListener('click', (event) => {
+    const videoPreview = event.target.closest('.side-video-preview');
+    if (videoPreview) {
+        fillVideoDetails(videoPreview.dataset.videoId);
+    }
+});
+
+
+
+
 async function fillVideoDetails(videoId) {
     const video = await searchVideo(videoId);
-    const channelPhotoProfile = await searchChannel(video.channelId);
+    const channel = await searchChannel(video.channelId);
 
     videoDetailsHtml =
         `
@@ -86,13 +97,13 @@ async function fillVideoDetails(videoId) {
             </p>
             <div class="container-channel-info">
               <div class="profile-image-container">
-                <img class="profile-image" src="${channelPhotoProfile}" alt="" />
+                <img class="profile-image" src="${channel.photoProfile}" alt="" />
               </div>
               <div class="channel-info">
                 <div class="info-left-section">
                   <div>
                     <p class="channel-name">${video.channelTitle}</p>
-                    <p class="channel-stats">4,78 M d’abonnés</p>
+                    <p class="channel-stats">${formatsubscriberCount(channel.subscriberCount)}</p>
                   </div>
 
                   <div class="subscribe-btn-section">
@@ -129,10 +140,13 @@ async function fillVideoDetails(videoId) {
 
 
 async function fillSidebarVideo(keyword) {
+    sidebarVideoHtml = '';
+
     searchVideos(keyword, 2)
         .then(async (videos) => {
             for (const video of videos) {
-                const { duration, viewCount } = await searchVideo(video.id.videoId);
+                const videoById = await searchVideo(video.id.videoId);
+                console.log(videoById.duration)
 
                 sidebarVideoHtml +=
                     `
@@ -140,7 +154,7 @@ async function fillSidebarVideo(keyword) {
                         <div class="side-video-info-grid">
                             <div class="side-thumbnail-row">
                                 <img class="side-profile" src="${video.snippet.thumbnails.medium.url}" alt="" />
-                                <div class="side-video-time">${convertDurationToTimeString(duration)}</div>
+                                <div class="side-video-time">${convertDurationToTimeString(videoById.duration)}</div>
                             </div>
                             <div class="side-video-info">
                                 <div class="side-video-title-container">
@@ -150,7 +164,7 @@ async function fillSidebarVideo(keyword) {
                                 <p class="side-tree-dots">&#8942;</p>
                                 </div>
                                 <p class="side-video-author">${video.snippet.channelTitle}</p>
-                                <p class="side-video-stats">${formatViews(viewCount)} · ${formatDate(video.snippet.publishedAt)}</p>
+                                <p class="side-video-stats">${formatViews(videoById.viewCount)} · ${formatDate(video.snippet.publishedAt)}</p>
                             </div>
                         </div>
                     </div>
