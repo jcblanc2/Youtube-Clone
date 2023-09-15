@@ -141,7 +141,7 @@ async function fillVideoDetails(videoId) {
 
 async function fillSidebarVideo(keyword) {
   sidebarVideoHtml = '';
-  searchVideos(keyword, 6)
+  searchVideos(keyword, 5)
     .then(async (videos) => {
       for (const video of videos) {
         const videoById = await searchVideo(video.id.videoId);
