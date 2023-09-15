@@ -141,7 +141,6 @@ async function fillVideoDetails(videoId) {
 
 async function fillSidebarVideo(keyword) {
   sidebarVideoHtml = '';
-  sidebarVideo.innerHTML = '';
   searchVideos(keyword, 6)
     .then(async (videos) => {
       for (const video of videos) {
@@ -171,6 +170,7 @@ async function fillSidebarVideo(keyword) {
                 `;
       }
 
+      sidebarVideo.innerHTML = '';
       sidebarVideo.innerHTML = sidebarVideoHtml;
     })
     .catch((error) => {
